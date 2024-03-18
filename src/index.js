@@ -1,5 +1,5 @@
 import "./index.html";
-import "./index.scss";
+import "./assets/scss/main.scss";
 import { mult, sum } from "./modules/calc";
 
 

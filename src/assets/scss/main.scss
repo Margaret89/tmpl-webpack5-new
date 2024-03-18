@@ -1,0 +1,26 @@
+// fancybox
+// @import '~@fancyapps/fancybox/dist/jquery.fancybox.css';
+
+@import "utils/vars";
+
+// bootstrap
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+// @import "~bootstrap/scss/mixins";
+// @import "~bootstrap/scss/utilities/flex";
+// @import "~bootstrap/scss/utilities/display";
+// @import "~bootstrap/scss/grid";
+// @import "~bootstrap/scss/modal";
+
+
+// @import "utils/libs";
+@import "utils/mixins";
+@import "utils/fonts";
+@import "utils/reset";
+
+@import "layouts/main";
+@import "layouts/header";
+@import "layouts/footer";
+
+@import "components/icons";
+@import "components/type-icon";

@@ -58,7 +58,7 @@ module.exports = {
 				test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
 				type: 'asset/resource',
 				generator: {
-					filename: 'fonts/[name][ext]'
+					filename: 'assets/fonts/[name][ext]'
 				}
 			},
 			{
@@ -89,6 +89,9 @@ module.exports = {
 					}
 				],
 				type: 'asset/resource',
+				generator: {
+					filename: 'assets/img/[name][ext]'
+				}
 			},
 			{
 				test: /\.(?:js|mjs|cjs)$/i,
