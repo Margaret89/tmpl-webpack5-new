@@ -1,4 +1,4 @@
-import "./index.html";
+// import "./index.html";
 import "./assets/scss/main.scss";
 import { mult, sum } from "./modules/calc";
 

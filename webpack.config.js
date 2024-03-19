@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -6,6 +7,9 @@ const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
 const target = devMode ? 'web' : 'browserslist';
 const devtool = devMode ? 'source-map' : undefined;
+
+const PAGES_DIR = path.resolve(__dirname, 'src/pug/pages/')
+const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
 
 module.exports = {
 	mode,
@@ -25,9 +29,11 @@ module.exports = {
 		// assetModuleFilename: path.join('images', '[name].[contenthash][ext]'),
 	},
 	plugins: [
-		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, 'src', 'index.html')
-		}),
+		...PAGES.map(page => new HtmlWebpackPlugin({
+			template: `${PAGES_DIR}/${page}`,
+			filename: `./${page.replace(/\.pug/,'.html')}`,
+			minify: false,
+		})),
 		new MiniCssExtractPlugin({
 			filename: '[name].[contenthash].css',
 		})
@@ -37,6 +43,31 @@ module.exports = {
 			{
 				test: /\.html$/i,
 				loader: "html-loader",
+				options: {
+					pretty: true,
+					minimize: false
+			   }
+			},
+			{
+				test: /\.pug$/,
+				loader: 'pug-loader',
+				// use: [
+				// 	'html-loader?minimize=false', 
+				// 	'pug-html-loader?pretty=true'
+				// ],
+				// options: {
+				// 	pretty: true,
+				// 	minimize: false,
+				// },
+				
+				// options: {
+				// 	query: { pretty: true },
+				// 	minimize: false
+				//   },
+				options: {
+					pretty: true,
+					minimize: false
+			   }
 			},
 			{
 				test: /\.(c|sa|sc)ss$/i,
@@ -108,18 +139,3 @@ module.exports = {
 		],
 	},
 }
-// 
-// 
-// // 
-// const mode = 'production';
-// 
-// 
-// 
-
-// module.exports = {
-// 	
-// 	
-// 
-// 
-//
-// }

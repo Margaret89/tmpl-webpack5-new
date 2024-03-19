@@ -1,0 +1,20 @@
+include ../utils/mixins
+block variables
+
+doctype html
+html(lang='ru')
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		title #{title}
+
+	body
+		.wrapper
+			include ./header
+			main
+				block header-ban
+				block breadcrumb
+				if h1
+					+h1(h1)
+				block content
+			include ./footer
